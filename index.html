@@ -1,0 +1,2414 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="fa">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MOTIF Cafe &amp; Restaurant</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+
+    :root {
+      --bg: #89977A;
+      --surface: #F4F7F3;
+      --surface-2: #E8EEE4;
+      --line: #D6E2D3;
+      --text: #233229;
+      --muted: #5E6F60;
+      --dark-green: #4E5D46;
+      --white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      font-family: "Vazirmatn", sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+
+      /*
+        فضای کافی برای Bottom Bar
+        تا آخرین آیتم زیر نوار پایین نرود
+      */
+      padding-bottom: 100px;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible {
+      outline: 3px solid rgba(255,255,255,.8);
+      outline-offset: 3px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    background: #89977A;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* افکت محو شدن از بالای عکس */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        #89977A 0%,
+        rgba(137,151,122,0.95) 8%,
+        rgba(137,151,122,0.75) 18%,
+        rgba(137,151,122,0.45) 32%,
+        rgba(137,151,122,0.15) 48%,
+        rgba(137,151,122,0) 65%
+    );
+    z-index: 2;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 3;
+}
+
+    .brand-logo {
+    display: block;
+    width: min(96%, 850px);
+    height: auto;
+    max-height: 230px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    }
+
+    .hero-overlay .brand-logo {
+    width: min(96%, 850px);
+    height: auto;
+    max-height: 230px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    }
+
+    .logo {
+    width: 100%;
+    height: 540px;
+    object-fit: cover;
+    }
+
+    h1 {
+      margin: 10px 0 0;
+
+      color: #fff;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 2.8rem;
+      letter-spacing: 6px;
+    }
+
+    .subtitle {
+      color: #fff;
+      opacity: .9;
+
+      font-family: "Playfair Display", serif;
+
+      letter-spacing: 3px;
+      font-size: .9rem;
+
+      margin-top: 6px;
+    }
+
+    /* =========================
+       TOP NAV
+    ========================= */
+
+    .top-nav{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:16px auto 0;
+    position:static;
+    width:100%;
+    padding:0 12px;
+}
+
+.top-nav button{
+    background: linear-gradient(180deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,.12) 100%);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.32);
+    padding:10px 17px;
+    border-radius:16px;
+    cursor:pointer;
+    font-family:"Vazirmatn", sans-serif;
+    font-weight:700;
+    min-width:0;
+    white-space:nowrap;
+    font-size:1rem;
+    letter-spacing:.2px;
+    line-height:1.1;
+    box-shadow: 0 2px 8px rgba(0,0,0,.10);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform .22s ease, background .22s ease, box-shadow .22s ease, border-color .22s ease, color .22s ease;
+}
+
+.top-nav button:hover{
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.24);
+    border-color: rgba(255,255,255,.44);
+    box-shadow: 0 5px 14px rgba(0,0,0,.14);
+}
+
+.top-nav button.active{
+    background: linear-gradient(180deg, #ffffff 0%, #f4f8f1 100%);
+    color:#4E5D46;
+    border-color: rgba(255,255,255,.62);
+    box-shadow: 0 6px 16px rgba(0,0,0,.14);
+    transform: translateY(-1px);
+}
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 760px;
+
+      margin: 0 auto;
+
+      padding: 20px;
+      width: 100%;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+      animation: pageFade .25s ease;
+    }
+
+    @keyframes pageFade {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-title {
+      color: #fff;
+
+      font-size: 1.2rem;
+
+      margin: 0 0 14px;
+    }
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .card {
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+
+      border-radius: 22px;
+
+      overflow: hidden;
+
+      margin-bottom: 18px;
+
+      box-shadow:
+        0 5px 18px rgba(35,50,41,.06);
+    }
+
+    .card-title {
+      position: relative;
+      padding: 16px 18px;
+
+      margin: 10px;
+      border: 2px solid var(--dark-green);
+      border-radius: 14px;
+      background: var(--surface-2);
+
+      color: var(--text);
+
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      text-align: right;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .card-title::after {
+      content: "⌄";
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .card-title[aria-expanded="false"]::after {
+      content: "›";
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .card-title:hover {
+      background: var(--dark-green);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .card.is-collapsed .card-title {
+      margin-bottom: 10px;
+    }
+
+    .card .item {
+      display: none;
+    }
+
+    .card.is-open .item {
+      display: flex;
+    }
+
+    .card.is-collapsed .item {
+      display: none;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+      text-align: left;
+      align-items: flex-start;
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 700;
+    }
+
+    .item-desc {
+      font-size: .82rem;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+    }
+
+
+    .item-image {
+      width: 84px;
+      height: 84px;
+      flex-shrink: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: transparent;
+    }
+
+    .item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .price {
+      margin-top: 6px;
+      color: var(--dark-green);
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    /* =====================================================
+       BOTTOM BAR
+    ===================================================== */
+
+    .bottom-bar {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      width: 100%;
+      min-height: 72px;
+      background: rgba(244,247,243,.98);
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -5px 25px rgba(0,0,0,.10);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px max(16px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      z-index: 99999;
+      direction: ltr;
+    }
+    .footer-center-group { display: flex; align-items: center; gap: 12px; }
+    .footer-icon-btn { appearance:none; background: var(--surface-2); border:1px solid var(--line); border-radius:50%; width:42px; height:42px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--dark-green); text-decoration:none; transition: transform 0.2s ease; }
+    .footer-icon-btn:active { transform: scale(0.92); }
+    .footer-icon-btn svg { width:20px; height:20px; fill: currentColor; }
+    .insta-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border:none; color:#fff; }
+    
+    .info-modal-overlay { position: fixed; inset:0; background: rgba(35,50,41,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display:flex; align-items:center; justify-content:center; z-index:100000; opacity:0; pointer-events:none; transition: opacity 0.3s ease; padding:20px; }
+    .info-modal-overlay.active { opacity:1; pointer-events:auto; }
+    .info-modal-content { background:#fff; width:100%; max-width:340px; border-radius:28px; padding:32px 24px; position:relative; box-shadow:0 20px 40px rgba(0,0,0,0.15); text-align:center; transform: translateY(20px); transition: transform 0.3s ease; }
+    .info-modal-overlay.active .info-modal-content { transform: translateY(0); }
+    .modal-close-btn { position:absolute; top:16px; right:16px; background: var(--surface); border:none; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--muted); font-size:18px; }
+    .modal-title { font-weight:800; font-size:1.2rem; color:var(--text); margin-bottom:20px; display:block; }
+    .modal-section { margin-bottom:18px; }
+    .modal-label { display:block; font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+    .modal-value { font-size:0.9rem; color:var(--dark-green); font-weight:600; line-height:1.5; }
+
+    /* =====================================================
+       MENU BUTTON - RIGHT
+    ===================================================== */
+
+    .menu-toggle {
+      appearance: none;
+
+      background: var(--bg);
+
+      color: #fff;
+
+      border: none;
+
+      min-height: 38px;
+
+      padding: 8px 17px;
+
+      border-radius: 999px;
+
+      cursor: pointer;
+
+      font-family: "Vazirmatn", sans-serif;
+
+      font-size: .85rem;
+
+      font-weight: 600;
+
+      white-space: nowrap;
+
+      box-shadow:
+        0 4px 12px rgba(0,0,0,.12);
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        opacity .2s ease;
+    }
+
+    .menu-toggle:hover {
+      opacity: .94;
+
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 6px 15px rgba(0,0,0,.16);
+    }
+
+    .menu-toggle:active {
+      transform: translateY(0);
+    }
+
+    /* =====================================================
+       LANGUAGE - LEFT
+    ===================================================== */
+
+    .lang {
+      display: flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      direction: ltr;
+    }
+
+    .lang button {
+      appearance: none;
+
+      border: 1px solid var(--line);
+
+      background: #fff;
+
+      color: var(--dark-green);
+
+      min-height: 36px;
+
+      padding: 6px 12px;
+
+      border-radius: 999px;
+
+      cursor: pointer;
+
+      font-family: "Vazirmatn", sans-serif;
+
+      font-size: .8rem;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+    }
+
+    .lang button:hover {
+      transform: translateY(-1px);
+    }
+
+    .lang button.active {
+      background: var(--bg);
+
+      color: #fff;
+
+      border-color: var(--bg);
+    }
+
+    /* =====================================================
+       MENU PANEL
+    ===================================================== */
+
+    .menu-panel {
+      position: fixed;
+
+      left: 50%;
+
+      bottom: 82px;
+
+      width: min(420px, calc(100% - 32px));
+
+      max-height: calc(100vh - 115px);
+
+      overflow-y: auto;
+
+      transform: translateX(-50%) translateY(20px);
+
+      background: rgba(244,247,243,.99);
+
+      border: 1px solid var(--line);
+
+      border-radius: 24px;
+
+      padding: 18px;
+
+      box-shadow:
+        0 18px 45px rgba(0,0,0,.20);
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      pointer-events: none;
+
+      z-index: 99998;
+
+      transition:
+        opacity .22s ease,
+        transform .22s ease,
+        visibility .22s ease;
+    }
+
+    .menu-panel.show {
+      opacity: 1;
+
+      visibility: visible;
+
+      pointer-events: auto;
+
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .menu-panel-title {
+      font-weight: 800;
+
+      color: var(--dark-green);
+
+      margin-bottom: 14px;
+
+      text-align: center;
+
+      font-size: 1rem;
+    }
+
+    /*
+      تک ستونه
+      وسط چین
+    */
+
+    .menu-links {
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 9px;
+
+      width: 100%;
+    }
+
+    .menu-link {
+      width: 100%;
+
+      border: 1px solid var(--line);
+
+      background: #fff;
+
+      color: var(--dark-green);
+
+      padding: 11px 14px;
+
+      border-radius: 14px;
+
+      cursor: pointer;
+
+      font-family: "Vazirmatn", sans-serif;
+
+      font-size: .9rem;
+
+      font-weight: 600;
+
+      text-align: center;
+
+      transition:
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .menu-link:hover {
+      background: var(--surface-2);
+
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 4px 10px rgba(35,50,41,.07);
+    }
+
+    .menu-link:active {
+      transform: translateY(0);
+    }
+
+    /* =====================================================
+       MENU OVERLAY
+    ===================================================== */
+
+    .menu-overlay {
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(35,50,41,.20);
+
+      backdrop-filter: blur(2px);
+
+      -webkit-backdrop-filter: blur(2px);
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      pointer-events: none;
+
+      z-index: 99997;
+
+      transition:
+        opacity .22s ease,
+        visibility .22s ease;
+    }
+
+    .menu-overlay.show {
+      opacity: 1;
+
+      visibility: visible;
+
+      pointer-events: auto;
+    }
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 480px) {
+
+      body {
+        padding-bottom: 94px;
+      }
+
+      .brand-logo {
+        width: 650px;
+        max-height: 190px;
+      }
+
+      .hero-overlay .brand-logo {
+        width: 650px;
+        height: auto;
+        max-height: 190px;
+      }
+
+      .hero {
+        height: 175px;
+        padding-top: 0;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .subtitle {
+        font-size: .72rem;
+        letter-spacing: 1.5px;
+      }
+
+      .container {
+        padding: 12px;
+      }
+
+      .top-nav {
+        gap: 12px;
+        margin-top: 10px;
+        padding: 0 8px;
+      }
+
+      .top-nav button {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 8px 6px;
+        font-size: .95rem;
+        border-radius: 11px;
+      }
+
+      .card {
+        border-radius: 16px;
+        margin-bottom: 12px;
+      }
+
+      .card-title {
+        margin: 8px;
+        padding: 13px 14px;
+        padding-left: 42px;
+        font-size: .9rem;
+      }
+
+      .item {
+        gap: 8px;
+        padding: 13px 12px;
+        align-items: flex-start;
+      }
+
+      .item-info {
+        gap: 4px;
+        min-width: 0;
+        text-align: right;
+        align-items: flex-start;
+        overflow-wrap: anywhere;
+      }
+
+      .item-name {
+        font-size: .9rem;
+        line-height: 1.5;
+      }
+
+      .item-desc {
+        font-size: .72rem;
+        line-height: 1.65;
+      }
+
+      .item-image {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+      }
+
+      .price {
+        padding: 0;
+        margin-top: 2px;
+        font-size: .82rem;
+        line-height: 1.5;
+      }
+
+      .menu-panel {
+        bottom: 80px;
+
+        width: calc(100% - 24px);
+
+        border-radius: 20px;
+
+        padding: 15px;
+      }
+
+      .menu-links {
+        gap: 8px;
+      }
+
+      .menu-toggle {
+        padding: 8px 14px;
+
+        font-size: .8rem;
+      }
+
+      .lang button {
+        padding: 6px 10px;
+      }
+
+      .bottom-bar {
+        min-height: 64px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+
+  
+/* =========================
+   PRIMARY CATEGORY BUTTONS — EMPHASIS
+========================= */
+.top-nav button{
+  padding:12px 22px;
+  min-width:120px;
+  border:1.5px solid rgba(255,255,255,.42);
+  border-radius:14px;
+  font-size:1.05rem;
+  font-weight:800;
+  letter-spacing:0;
+  line-height:1.05;
+  text-shadow:0 1px 0 rgba(0,0,0,.10);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.14),
+    inset 0 1px 0 rgba(255,255,255,.14);
+}
+
+.top-nav button:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.28);
+  border-color:rgba(255,255,255,.56);
+  box-shadow:
+    0 7px 18px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+.top-nav button.active{
+  transform:translateY(-2px);
+  border-color:rgba(255,255,255,.82);
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.20),
+    0 0 0 2px rgba(255,255,255,.18);
+}
+
+@media (max-width:600px){
+  .top-nav button{
+    min-width:0;
+    padding:10px 10px;
+    font-size:.95rem;
+    border-radius:13px;
+  }
+  .top-nav button.active{
+    transform:translateY(-1px);
+  }
+}
+
+
+/* =====================================================
+   FOOTER INFO BUTTONS & MODAL (independent Instagram)
+===================================================== */
+.footer-icon-btn {
+  appearance: none;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  min-width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  z-index: 10;
+  text-decoration: none;
+  color: var(--dark-green);
+}
+
+.footer-icon-btn:hover {
+  transform: translateY(-2px);
+  background: var(--white);
+  box-shadow: 0 6px 15px rgba(0,0,0,.14);
+}
+
+.footer-icon-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.footer-icon-btn .icon-label {
+  font-size: .72rem;
+  font-weight: 600;
+  margin-right: 4px;
+  margin-left: 4px;
+  font-family: "Vazirmatn", sans-serif;
+}
+
+.footer-center-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Instagram independent link accent */
+.insta-link {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  border: none;
+  color: #fff;
+}
+
+.insta-link:hover {
+  color: #fff;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+/* Modal Overlay */
+.info-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(35, 50, 41, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100000;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+  padding: 20px;
+}
+.info-modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+.info-modal-content {
+  background: var(--white);
+  width: 100%; max-width: 340px;
+  border-radius: 28px; padding: 32px 24px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+  transform: translateY(20px);
+  transition: transform .3s ease;
+  text-align: center;
+}
+.info-modal-overlay.active .info-modal-content { transform: translateY(0); }
+
+.modal-close-btn {
+  position: absolute; top: 16px; right: 16px;
+  background: var(--surface); border: none;
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--muted);
+  font-size: 1rem;
+}
+
+.modal-title { font-weight: 800; font-size: 1.2rem; color: var(--text); margin-bottom: 20px; display: block; }
+.modal-section { margin-bottom: 18px; }
+.modal-label { display: block; font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.modal-value { font-size: .9rem; color: var(--dark-green); font-weight: 600; line-height: 1.6; }
+
+.modal-icon-row {
+  display: flex; justify-content: center; gap: 12px; margin-top: 6px;
+}
+
+
+
+        .modal-route-section {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .modal-route-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.2px;
+            color: #151515;
+            background: linear-gradient(135deg, #c9a227 0%, #f0d77a 100%);
+            box-shadow: 0 8px 24px rgba(201, 162, 39, 0.30);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+        }
+
+        .modal-route-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(201, 162, 39, 0.38);
+            opacity: 0.98;
+        }
+
+        .modal-route-btn .route-icon {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* دسته‌های اصلی به‌صورت ردیف آیکونی */
+        .top-nav {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            flex-wrap: nowrap;
+            width: min(760px, calc(100% - 24px));
+            margin: 16px auto 0;
+        }
+
+        .top-nav button {
+            min-width: 0;
+            width: 100%;
+            min-height: 78px;
+            padding: 10px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            border-radius: 20px;
+            font-size: .86rem;
+            line-height: 1.2;
+        }
+
+        .top-nav button::before {
+            display: block;
+            font-size: 1.75rem;
+            line-height: 1;
+            filter: drop-shadow(0 3px 4px rgba(35,50,41,.18));
+        }
+
+        #cafeBtn::before { content: "☕"; }
+        #foodBtn::before { content: "🍽️"; }
+        #breakfastBtn::before { content: "🍳"; }
+        #hookahBtn::before {
+            content: "\2248";
+            display: block;
+            font-size: 2rem;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -8px;
+            transform: rotate(-18deg);
+            filter: drop-shadow(0 3px 4px rgba(35,50,41,.18));
+        }
+        #hookahBtn .smoke-icon { display: none; }
+
+        @media (max-width: 480px) {
+            .top-nav {
+                gap: 6px;
+                width: calc(100% - 16px);
+            }
+            .top-nav button {
+                min-height: 70px;
+                padding: 8px 3px;
+                border-radius: 16px;
+                font-size: .76rem;
+            }
+            .top-nav button::before {
+                font-size: 1.45rem;
+            }
+        }
+
+</style>
+</head>
+<body>
+<!-- =====================================================
+       HEADER
+  ====================================================== -->
+<header class="hero">
+<img alt="MOTIF Cafe" src="images/cafe-banner.jpeg"/>
+<div class="hero-overlay">
+<img class="brand-logo" src="images/LOGO.png" alt="MOTIF Cafe &amp; Restaurant"/>
+</div>
+</header>
+<div class="top-nav">
+<button class="active" data-en="Cafe" data-fa="کافه" id="cafeBtn" onclick="showPage('cafe')">کافه</button>
+<button data-en="Food" data-fa="غذا" id="foodBtn" onclick="showPage('food')">غذا</button>
+<button data-en="Breakfast" data-fa="صبحانه" id="breakfastBtn" onclick="showPage('breakfast')">صبحانه</button>
+<button data-en="Hookah" data-fa="قلیان" id="hookahBtn" onclick="showPage('hookah')"><svg aria-hidden="true" class="smoke-icon" viewBox="0 0 48 48"><path d="M11 38c10-5 5-13 14-18 7-4 8-9 5-13"/><path class="accent" d="M22 39c8-5 3-10 10-14 5-3 6-7 4-10"/></svg><span>قلیان</span></button>
+</div>
+<!-- =====================================================
+       MAIN
+  ====================================================== -->
+<main>
+<div class="container">
+<!-- =================================================
+           CAFE
+      ================================================== -->
+<section class="page active" data-category-id="cafe" id="cafe"><h2 class="section-title" data-en="Cafe" data-fa="کافه">کافه</h2><div class="card" data-category-id="cafe" data-subcat-id="cafe-espresso-base"><div class="card-title" data-en="اسپرسو بیس" data-fa="اسپرسو بیس">اسپرسو بیس</div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-001" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-002" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-003" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-004" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-005" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-006" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-007" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-008" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-009" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-010" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-011" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-012" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-013" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-espresso-base-014" data-subcat-id="cafe-espresso-base"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-chocolate-bar"><div class="card-title" data-en="Hot Drink" data-fa="هات درینک">هات درینک</div><div class="item" data-category-id="cafe" data-product-id="cafe-chocolate-bar-001" data-subcat-id="cafe-chocolate-bar"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-chocolate-bar-002" data-subcat-id="cafe-chocolate-bar"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-chocolate-bar-003" data-subcat-id="cafe-chocolate-bar"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-chocolate-bar-004" data-subcat-id="cafe-chocolate-bar"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-chocolate-bar-005" data-subcat-id="cafe-chocolate-bar"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-chocolate-bar-006" data-subcat-id="cafe-chocolate-bar"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-chocolate-bar-007" data-subcat-id="cafe-chocolate-bar"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-tea-herbal"><div class="card-title" data-en="چای و دمنوش" data-fa="چای و دمنوش">چای و دمنوش</div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-001" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-002" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-003" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-004" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-005" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-006" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-007" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-008" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-009" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-010" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-tea-herbal-011" data-subcat-id="cafe-tea-herbal"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-ice"><div class="card-title" data-en="آیس" data-fa="آیس">آیس</div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-001" data-subcat-id="cafe-ice"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-002" data-subcat-id="cafe-ice"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-003" data-subcat-id="cafe-ice"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-004" data-subcat-id="cafe-ice"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-005" data-subcat-id="cafe-ice"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-006" data-subcat-id="cafe-ice"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-007" data-subcat-id="cafe-ice"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-008" data-subcat-id="cafe-ice"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-009" data-subcat-id="cafe-ice"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-smoothie"><div class="card-title" data-en="اسموتی" data-fa="اسموتی">اسموتی</div><div class="item" data-category-id="cafe" data-product-id="cafe-smoothie-001" data-subcat-id="cafe-smoothie"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-smoothie-002" data-subcat-id="cafe-smoothie"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-smoothie-003" data-subcat-id="cafe-smoothie"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-smoothie-004" data-subcat-id="cafe-smoothie"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-smoothie-005" data-subcat-id="cafe-smoothie"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-smoothie-006" data-subcat-id="cafe-smoothie"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-smoothie-007" data-subcat-id="cafe-smoothie"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-mocktail"><div class="card-title" data-en="ماکتیل" data-fa="ماکتیل">ماکتیل</div><div class="item" data-category-id="cafe" data-product-id="cafe-mocktail-001" data-subcat-id="cafe-mocktail"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-mocktail-002" data-subcat-id="cafe-mocktail"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-mocktail-003" data-subcat-id="cafe-mocktail"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-mocktail-004" data-subcat-id="cafe-mocktail"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-mocktail-005" data-subcat-id="cafe-mocktail"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-mocktail-006" data-subcat-id="cafe-mocktail"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-mocktail-007" data-subcat-id="cafe-mocktail"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-ice-cream-shakes"><div class="card-title" data-en="بستني و شيك ها" data-fa="بستني و شيك ها">بستني و شيك ها</div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-cream-shakes-001" data-subcat-id="cafe-ice-cream-shakes"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-cream-shakes-002" data-subcat-id="cafe-ice-cream-shakes"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-cream-shakes-003" data-subcat-id="cafe-ice-cream-shakes"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-cream-shakes-004" data-subcat-id="cafe-ice-cream-shakes"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-cream-shakes-005" data-subcat-id="cafe-ice-cream-shakes"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-cream-shakes-006" data-subcat-id="cafe-ice-cream-shakes"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-cream-shakes-007" data-subcat-id="cafe-ice-cream-shakes"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-cream-shakes-008" data-subcat-id="cafe-ice-cream-shakes"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-ice-cream-shakes-009" data-subcat-id="cafe-ice-cream-shakes"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-refresher" hidden><div class="card-title" data-en="رفرشر" data-fa="رفرشر">رفرشر</div><div class="item" data-category-id="cafe" data-product-id="cafe-refresher-001" data-subcat-id="cafe-refresher"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-refresher-002" data-subcat-id="cafe-refresher"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-refresher-003" data-subcat-id="cafe-refresher"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-brewed-coffee"><div class="card-title" data-en="قهوه دمی" data-fa="قهوه دمی">قهوه دمی</div><div class="item" data-category-id="cafe" data-product-id="cafe-brewed-coffee-001" data-subcat-id="cafe-brewed-coffee"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-brewed-coffee-002" data-subcat-id="cafe-brewed-coffee"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-brewed-coffee-003" data-subcat-id="cafe-brewed-coffee"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-brewed-coffee-004" data-subcat-id="cafe-brewed-coffee"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-brewed-coffee-005" data-subcat-id="cafe-brewed-coffee"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-beverages"><div class="card-title" data-en="نوشيدني" data-fa="نوشيدني">نوشيدني</div><div class="item" data-category-id="cafe" data-product-id="cafe-beverages-001" data-subcat-id="cafe-beverages"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-beverages-002" data-subcat-id="cafe-beverages"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-beverages-003" data-subcat-id="cafe-beverages"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-beverages-004" data-subcat-id="cafe-beverages"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-beverages-005" data-subcat-id="cafe-beverages"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-beverages-006" data-subcat-id="cafe-beverages"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-beverages-007" data-subcat-id="cafe-beverages"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-beverages-008" data-subcat-id="cafe-beverages"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-beverages-009" data-subcat-id="cafe-beverages"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="cafe" data-subcat-id="cafe-cake"><div class="card-title" data-en="كيك" data-fa="كيك">كيك</div><div class="item" data-category-id="cafe" data-product-id="cafe-cake-001" data-subcat-id="cafe-cake"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-cake-002" data-subcat-id="cafe-cake"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="cafe" data-product-id="cafe-cake-003" data-subcat-id="cafe-cake"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div></section>
+<!-- =================================================
+           FOOD
+      ================================================== -->
+<section class="page" data-category-id="food" id="food"><h2 class="section-title" data-en="Food" data-fa="غذا">غذا</h2><div class="card" data-category-id="food" data-subcat-id="food-salad-starter"><div class="card-title" data-en="سالاد و استارتر" data-fa="سالاد و استارتر">سالاد و استارتر</div><div class="item" data-category-id="food" data-product-id="food-salad-starter-001" data-subcat-id="food-salad-starter"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-salad-starter-002" data-subcat-id="food-salad-starter"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-salad-starter-003" data-subcat-id="food-salad-starter"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-salad-starter-004" data-subcat-id="food-salad-starter"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-salad-starter-005" data-subcat-id="food-salad-starter"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-salad-starter-006" data-subcat-id="food-salad-starter"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-salad-starter-007" data-subcat-id="food-salad-starter"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-salad-starter-008" data-subcat-id="food-salad-starter"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-salad-starter-009" data-subcat-id="food-salad-starter"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="food" data-subcat-id="food-burger-panini"><div class="card-title" data-en="برگر و پنینی" data-fa="برگر و پنینی">برگر و پنینی</div><div class="item" data-category-id="food" data-product-id="food-burger-panini-001" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-burger-panini-002" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-burger-panini-003" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-burger-panini-004" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-burger-panini-005" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-burger-panini-006" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-burger-panini-007" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-burger-panini-008" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-burger-panini-009" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-burger-panini-010" data-subcat-id="food-burger-panini"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="food" data-subcat-id="food-pasta"><div class="card-title" data-en="پاستا" data-fa="پاستا">پاستا</div><div class="item" data-category-id="food" data-product-id="food-pasta-001" data-subcat-id="food-pasta"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pasta-002" data-subcat-id="food-pasta"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="food" data-subcat-id="food-pizza"><div class="card-title" data-en="پیتزا" data-fa="پیتزا">پیتزا</div><div class="item" data-category-id="food" data-product-id="food-pizza-001" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pizza-002" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pizza-003" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pizza-004" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pizza-005" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pizza-006" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pizza-007" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pizza-008" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pizza-009" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-pizza-010" data-subcat-id="food-pizza"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div><div class="card" data-category-id="food" data-subcat-id="food-main-course"><div class="card-title" data-en="غذای اصلی" data-fa="غذای اصلی">غذای اصلی</div><div class="item" data-category-id="food" data-product-id="food-main-course-001" data-subcat-id="food-main-course"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-main-course-002" data-subcat-id="food-main-course"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="food" data-product-id="food-main-course-003" data-subcat-id="food-main-course"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div></section>
+<!-- =================================================
+           BREAKFAST
+      ================================================== -->
+<section class="page" data-category-id="breakfast" id="breakfast"><h2 class="section-title" data-en="Breakfast" data-fa="صبحانه">صبحانه</h2><div class="card" data-category-id="breakfast" data-subcat-id="breakfast-breakfast-snacks"><div class="card-title" data-en="صبحانه و ميان وعده" data-fa="صبحانه و ميان وعده">صبحانه و ميان وعده</div><div class="item" data-category-id="breakfast" data-product-id="breakfast-breakfast-snacks-001" data-subcat-id="breakfast-breakfast-snacks"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="breakfast" data-product-id="breakfast-breakfast-snacks-002" data-subcat-id="breakfast-breakfast-snacks"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="breakfast" data-product-id="breakfast-breakfast-snacks-003" data-subcat-id="breakfast-breakfast-snacks"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="breakfast" data-product-id="breakfast-breakfast-snacks-004" data-subcat-id="breakfast-breakfast-snacks"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="breakfast" data-product-id="breakfast-breakfast-snacks-005" data-subcat-id="breakfast-breakfast-snacks"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="breakfast" data-product-id="breakfast-breakfast-snacks-006" data-subcat-id="breakfast-breakfast-snacks"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div></section>
+<!-- =================================================
+           HOOKAH
+      ================================================== -->
+<section class="page" data-category-id="hookah" id="hookah"><h2 class="section-title" data-en="Hookah" data-fa="قلیان">قلیان</h2><div class="card" data-category-id="hookah" data-subcat-id="hookah-hookah"><div class="card-title" data-en="هوکا" data-fa="هوکا">هوکا</div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-001" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-002" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-003" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-004" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-005" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-006" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-007" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-008" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-009" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div><div class="item" data-category-id="hookah" data-product-id="hookah-hookah-010" data-subcat-id="hookah-hookah"><div class="item-info"><div class="item-name"></div><div class="item-desc"></div></div><div class="price">Wating</div></div></div></section>
+</div>
+</main>
+<!-- =====================================================
+       OVERLAY
+  ====================================================== -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()">
+</div>
+<!-- =====================================================
+       MENU PANEL
+       تک ستونه + وسط چین
+  ====================================================== -->
+<nav aria-label="منوی کامل" class="menu-panel" id="menuPanel">
+<div class="menu-panel-title" data-en="View Menu" data-fa="مشاهده منو">
+      مشاهده منو
+    </div>
+<div class="menu-links">
+<!-- CAFE -->
+<button class="menu-link" data-en="☕ Cafe" data-fa="☕ کافه" onclick="goToCategory('cafe')" type="button">☕ کافه</button>
+<button class="menu-link" data-en="Espresso Base" data-fa="اسپرسو بیس" onclick="goToCategory('cafe','اسپرسو بیس')" type="button">اسپرسو بیس</button>
+<button class="menu-link" data-en="Hot Drink" data-fa="هات درینک" onclick="goToCategory('cafe','هات درینک')" type="button">هات درینک</button>
+<button class="menu-link" data-en="Tea &amp; Herbal Infusions" data-fa="چای و دمنوش" onclick="goToCategory('cafe','چای و دمنوش')" type="button">چای و دمنوش</button>
+<button class="menu-link" data-en="Ice" data-fa="آیس" onclick="goToCategory('cafe','آیس')" type="button">آیس</button>
+<button class="menu-link" data-en="Smoothies" data-fa="اسموتی" onclick="goToCategory('cafe','اسموتی')" type="button">اسموتی</button>
+<button class="menu-link" data-en="Mocktails &amp; Refreshers" data-fa="ماکتیل و رفرشر" onclick="goToCategory('cafe','ماکتیل')" type="button">ماکتیل و رفرشر</button>
+<button class="menu-link" data-en="Ice Cream &amp; Shakes" data-fa="بستنی و شیک‌ها" onclick="goToCategory('cafe','بستني و شيك ها')" type="button">بستنی و شیک‌ها</button>
+<button class="menu-link" data-en="Refreshers" data-fa="رفرشر" data-subcat-id="cafe-refresher" hidden onclick="goToCategory('cafe','رفرشر')" type="button">رفرشر</button>
+<button class="menu-link" data-en="Drip Coffee" data-fa="قهوه دمی" onclick="goToCategory('cafe','قهوه دمی')" type="button">قهوه دمی</button>
+<button class="menu-link" data-en="Beverages" data-fa="نوشیدنی" onclick="goToCategory('cafe','نوشيدني ')" type="button">نوشیدنی</button>
+<button class="menu-link" data-en="Cakes" data-fa="کیک" onclick="goToCategory('cafe','كيك')" type="button">کیک</button>
+<!-- FOOD -->
+<button class="menu-link" data-en="🍽 Food" data-fa="🍽 غذا" onclick="goToCategory('food')" type="button">🍽 غذا</button>
+<button class="menu-link" data-en="Salads &amp; Starters" data-fa="سالاد و استارتر" onclick="goToCategory('food','سالاد و استارتر')" type="button">سالاد و استارتر</button>
+<button class="menu-link" data-en="Burgers &amp; Panini" data-fa="برگر و پنینی" onclick="goToCategory('food','برگر و پنینی')" type="button">برگر و پنینی</button>
+<button class="menu-link" data-en="Pasta" data-fa="پاستا" onclick="goToCategory('food','پاستا')" type="button">پاستا</button>
+<button class="menu-link" data-en="Pizza" data-fa="پیتزا" onclick="goToCategory('food','پیتزا')" type="button">پیتزا</button>
+<button class="menu-link" data-en="Main Courses" data-fa="غذای اصلی" onclick="goToCategory('food','غذای اصلی')" type="button">غذای اصلی</button>
+<!-- BREAKFAST -->
+<button class="menu-link" data-en="🍳 Breakfast" data-fa="🍳 صبحانه" onclick="goToCategory('breakfast')" type="button">🍳 صبحانه</button>
+<button class="menu-link" data-en="Breakfast &amp; Snacks" data-fa="صبحانه و میان‌وعده" onclick="goToCategory('breakfast','صبحانه و ميان وعده')" type="button">صبحانه و میان‌وعده</button>
+<!-- HOOKAH -->
+<button class="menu-link" data-en="🌿 Hookah" data-fa="🌿 قلیان" onclick="goToCategory('hookah')" type="button">🌿 قلیان</button>
+<button class="menu-link" data-en="Hookah Menu" data-fa="هوکا" onclick="goToCategory('hookah','هوکا')" type="button">هوکا</button>
+</div>
+</nav>
+<!-- =====================================================
+       BOTTOM BAR
+  ====================================================== -->
+<footer class="bottom-bar">
+<!-- LEFT: LANGUAGE -->
+<div class="lang">
+<button class="active" id="faBtn" onclick="setLanguage('fa')" type="button">فارسی</button>
+<button id="enBtn" onclick="setLanguage('en')" type="button">EN</button>
+</div>
+<!-- CENTER: LOCATION (opens popup) + INDEPENDENT INSTAGRAM -->
+<div class="footer-center-group">
+<!-- Location popup trigger (separate) -->
+<button aria-label="Location &amp; Hours" class="footer-icon-btn" id="locationBtn" onclick="toggleInfoModal()" type="button">
+<svg viewbox="0 0 24 24"><path d="M20 10c0 4.418-8 12-8 12s-8-7.582-8-12c0-4.418 3.582-8 8-8s8 3.582 8 8zm-8 2.5c1.381 0 2.5-1.119 2.5-2.5s-1.119-2.5-2.5-2.5-2.5 1.119-2.5 2.5 1.119 2.5 2.5 2.5z"></path></svg>
+</button>
+<!-- INDEPENDENT INSTAGRAM (direct link, no popup) -->
+<a aria-label="Instagram @motif__cafe" class="footer-icon-btn insta-link" href="https://instagram.com/motif__cafe" rel="noopener" target="_blank">
+<svg viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+<!-- RIGHT: MENU -->
+<button aria-controls="menuPanel" aria-expanded="false" class="menu-toggle" data-en="View Menu" data-fa="مشاهده منو" id="menuToggle" onclick="toggleMenu()" type="button">
+    مشاهده منو
+  </button>
+</footer>
+<!-- INFO MODAL (LOCATION & HOURS ONLY — NO INSTAGRAM) -->
+<div class="info-modal-overlay" id="infoModal">
+<div class="info-modal-content">
+<button class="modal-close-btn" onclick="toggleInfoModal()" type="button">✕</button>
+<span class="modal-title" data-en="Motif Cafe" data-fa="کافه موتیف">کافه موتیف</span>
+<div class="modal-route-section">
+       آدرس : کرج، گلشهرویلا، خیابان عطار، ضلع شمال شرقی پارک عطار 
+  <a class="modal-route-btn" href="https://nshn.ir/?lat=35.816580194731756&amp;lng=50.95320578294144" rel="noopener" target="_blank">
+    📍 مسیریابی با نشان
+    
+  </a>
+</div>
+<div class="modal-section">
+<span class="modal-label" data-en="Opening Hours" data-fa="ساعات کاری">ساعات کاری</span>
+<div class="modal-value" data-en="Sat-Fri: 08:00 - 23:59" data-fa="شنبه تا جمعه: 08:00 - 23:59">
+        شنبه تا جمعه: 08:00 - 23:59
+      </div>
+</div>
+</div>
+</div>
+<!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+<script>
+
+    /* =====================================================
+       SHOW MAIN CATEGORY
+    ====================================================== */
+
+    function showPage(page) {
+
+      document
+        .querySelectorAll(".page")
+        .forEach(function(p) {
+
+          p.classList.remove("active");
+
+        });
+
+
+      const selectedPage =
+        document.getElementById(page);
+
+
+      if (selectedPage) {
+
+        selectedPage.classList.add("active");
+
+      }
+
+
+      document
+        .querySelectorAll(".top-nav button")
+        .forEach(function(button) {
+
+          button.classList.remove("active");
+
+        });
+
+
+      const selectedButton =
+        document.getElementById(page + "Btn");
+
+
+      if (selectedButton) {
+
+        selectedButton.classList.add("active");
+
+      }
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* =====================================================
+       TOGGLE MENU
+    ====================================================== */
+
+    function toggleMenu() {
+
+      const menu =
+        document.getElementById("menuPanel");
+
+      const overlay =
+        document.getElementById("menuOverlay");
+
+      const button =
+        document.getElementById("menuToggle");
+
+
+      const isOpen =
+        menu.classList.contains("show");
+
+
+      if (isOpen) {
+
+        closeMenu();
+
+      } else {
+
+        menu.classList.add("show");
+
+        overlay.classList.add("show");
+
+        button.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       CLOSE MENU
+    ====================================================== */
+
+    function closeMenu() {
+
+      const menu =
+        document.getElementById("menuPanel");
+
+      const overlay =
+        document.getElementById("menuOverlay");
+
+      const button =
+        document.getElementById("menuToggle");
+
+
+      menu.classList.remove("show");
+
+      overlay.classList.remove("show");
+
+      button.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    }
+
+
+    /* =====================================================
+       GO TO CATEGORY / HEADER
+    ====================================================== */
+
+    function toggleInfoModal() {
+      const modal = document.getElementById("infoModal");
+      const isOpen = modal.classList.contains("active");
+      modal.classList.toggle("active");
+      modal.setAttribute("aria-hidden", isOpen ? "true" : "false");
+    }
+
+    document.getElementById("infoModal").addEventListener("click", function(event) {
+      if (event.target === this) toggleInfoModal();
+    });
+
+    function goToCategory(page, headerName) {
+
+      closeMenu();
+
+      showPage(page);
+
+      if (!headerName) {
+        return;
+      }
+
+      setTimeout(function() {
+        const pageElement = document.getElementById(page);
+        if (!pageElement) return;
+
+        const wanted = String(headerName).replace(/\s+/g, " ").trim();
+        const card = Array.from(pageElement.querySelectorAll(".card")).find(function(item) {
+          const title = item.querySelector(".card-title");
+          if (!title) return false;
+          return [title.textContent, title.dataset.fa, title.dataset.en]
+            .filter(Boolean)
+            .some(function(value) {
+              return String(value).replace(/\s+/g, " ").trim() === wanted;
+            });
+        });
+
+        if (card) {
+          expandCard(card);
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 50);
+
+    }
+
+    function expandCard(card) {
+      if (!card) return;
+
+      const page = card.closest(".page");
+      if (page) {
+        page.querySelectorAll(".card.is-open").forEach(function(otherCard) {
+          if (otherCard !== card) {
+            otherCard.classList.remove("is-open");
+            otherCard.classList.add("is-collapsed");
+            const otherTitle = otherCard.querySelector(".card-title");
+            if (otherTitle) {
+              otherTitle.setAttribute("aria-expanded", "false");
+            }
+          }
+        });
+      }
+
+      card.classList.remove("is-collapsed");
+      card.classList.add("is-open");
+      const title = card.querySelector(".card-title");
+      if (title) title.setAttribute("aria-expanded", "true");
+    }
+
+    function toggleCard(card) {
+      if (!card) return;
+      if (card.classList.contains("is-open")) {
+        card.classList.remove("is-open");
+        card.classList.add("is-collapsed");
+        const title = card.querySelector(".card-title");
+        if (title) title.setAttribute("aria-expanded", "false");
+      } else {
+        expandCard(card);
+      }
+    }
+
+
+    /* =====================================================
+       LANGUAGE
+    ====================================================== */
+
+    function setLanguage(language) {
+
+      const faBtn = document.getElementById("faBtn");
+      const enBtn = document.getElementById("enBtn");
+      const isEnglish = language === "en";
+      const categoryEnglish = {
+        "اسپرسو بیس": "Espresso Base",
+        "هات درینک": "Hot Drink",
+        "چای و دمنوش": "Tea & Herbal Infusions",
+        "آیس": "Ice",
+        "سوپر فود": "Super Food",
+        "اسموتی": "Smoothies",
+        "ماکتیل و رفرشر": "Mocktails & Refreshers",
+        "بستني و شيك ها": "Ice Cream & Shakes",
+        "رفرشر": "Refreshers",
+        "قهوه دمی": "Drip Coffee",
+        "نوشيدني": "Beverages",
+        "كيك": "Cakes",
+        "سالاد و استارتر": "Salads & Starters",
+        "برگر و پنینی": "Burgers & Panini",
+        "پاستا": "Pasta",
+        "پیتزا": "Pizza",
+        "غذای اصلی": "Main Courses",
+        "صبحانه و ميان وعده": "Breakfast & Snacks",
+        "هوکا": "Hookah"
+      };
+      const phraseEnglish = [
+        ["اسپرسو", "Espresso"], ["آمریکانو", "Americano"], ["کاپوچینو", "Cappuccino"],
+        ["لاته", "Latte"], ["ماکیاتو", "Macchiato"], ["موکا", "Mocha"], ["آفوگاتو", "Affogato"],
+        ["چای", "Tea"], ["دمنوش", "Herbal Tea"], ["شکلات", "Chocolate"], ["چاکلت", "Chocolate"],
+        ["آیس", "Ice"], ["آیس", "Ice"], ["اسموتی", "Smoothie"], ["ماکتیل", "Mocktail"],
+        ["رفرشر", "Refresher"], ["شیک", "Shake"], ["بستنی", "Ice Cream"], ["قهوه", "Coffee"],
+        ["سالاد", "Salad"], ["سوپ", "Soup"], ["استارتر", "Starter"], ["برگر", "Burger"],
+        ["پنینی", "Panini"], ["پاستا", "Pasta"], ["پیتزا", "Pizza"], ["مرغ", "Chicken"],
+        ["چیکن", "Chicken"], ["گوشت", "Beef"], ["استیک", "Steak"], ["قارچ", "Mushroom"],
+        ["پنیر", "Cheese"], ["سیب", "Apple"], ["موز", "Banana"], ["انبه", "Mango"],
+        ["توت فرنگی", "Strawberry"], ["لیمو", "Lemon"], ["پرتقال", "Orange"],
+        ["نعنا", "Mint"], ["دارچین", "Cinnamon"], ["وانیل", "Vanilla"], ["نوتلا", "Nutella"],
+        ["پسته", "Pistachio"], ["کارامل", "Caramel"], ["زعفران", "Saffron"],
+        ["صبحانه", "Breakfast"], ["میان وعده", "Snack"], ["کروسان", "Croissant"],
+        ["قلیان", "Hookah"], ["کیک", "Cake"], ["نوشیدنی", "Beverage"], ["آب", "Water"],
+        ["شیر", "Milk"], ["یخ", "Ice"], ["سس", "Sauce"], ["نان", "Bread"],
+        ["سبزیجات", "Vegetables"], ["سیر", "Garlic"], ["تخم مرغ", "Egg"], ["بیکن", "Bacon"],
+        ["کلاسیک", "Classic"], ["مخصوص", "Special"], ["پریمیوم", "Premium"],
+        ["دوسیب", "Double Apple"], ["دو سیب", "Double Apple"], ["میکس", "Mix"],
+        ["طبیعی", "Fresh"], ["فصل", "Seasonal"], ["ترک", "Turkish"], ["ماچا", "Matcha"]
+      ];
+      const transliteration = {
+        "ا":"a","آ":"a","ب":"b","پ":"p","ت":"t","ث":"s","ج":"j","چ":"ch","ح":"h","خ":"kh",
+        "د":"d","ذ":"z","ر":"r","ز":"z","ژ":"zh","س":"s","ش":"sh","ص":"s","ض":"z","ط":"t",
+        "ظ":"z","ع":"a","غ":"gh","ف":"f","ق":"gh","ک":"k","گ":"g","ل":"l","م":"m","ن":"n",
+        "و":"v","ه":"h","ی":"y","ء":"","ئ":"y","ك":"k","ي":"y","ة":"h"
+      };
+      function englishize(value) {
+        let result = (value || "").trim();
+        phraseEnglish.forEach(function(pair) {
+          result = result.split(pair[0]).join(pair[1]);
+        });
+        result = result.replace(/[\u0600-\u06ff]+/g, function(word) {
+          return word.split("").map(function(letter) {
+            return transliteration[letter] || letter;
+          }).join("");
+        });
+        return result || "Details unavailable";
+      }
+
+      document.documentElement.lang = isEnglish ? "en" : "fa";
+      document.documentElement.dir = isEnglish ? "ltr" : "rtl";
+
+      const mocktailTitle = document.querySelector('.card[data-subcat-id="cafe-mocktail"] .card-title');
+      if (mocktailTitle) {
+        mocktailTitle.setAttribute("data-fa", "ماکتیل و رفرشر");
+        mocktailTitle.setAttribute("data-en", "Mocktails & Refreshers");
+      }
+
+      if (faBtn) faBtn.classList.toggle("active", !isEnglish);
+      if (enBtn) enBtn.classList.toggle("active", isEnglish);
+
+      document.querySelectorAll("[data-fa][data-en]").forEach(function(el) {
+        let englishText = el.dataset.en;
+        if (el.classList.contains("card-title")) {
+          englishText = categoryEnglish[el.dataset.fa.trim()] || englishText;
+        } else if (el.classList.contains("item-name") && el.dataset.loaderName === "true" && el.dataset.en) {
+          englishText = el.dataset.en;
+        } else if (el.classList.contains("item-desc") && el.dataset.loaderDescription === "true" && el.dataset.en) {
+          englishText = el.dataset.en;
+        } else if (el.classList.contains("item-name") || el.classList.contains("item-desc")) {
+          englishText = englishize(el.dataset.fa);
+        }
+        el.textContent = isEnglish ? englishText : el.dataset.fa;
+      });
+
+      localStorage.setItem("motifLanguage", language);
+    }
+
+    function normalizeDigits(value) {
+      return String(value)
+        .replace(/[۰-۹]/g, function(digit) {
+          return "۰۱۲۳۴۵۶۷۸۹".indexOf(digit);
+        })
+        .replace(/[٠-٩]/g, function(digit) {
+          return "٠١٢٣٤٥٦٧٨٩".indexOf(digit);
+        });
+    }
+
+    function normalizeAllVisibleDigits() {
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        {
+          acceptNode: function(node) {
+            return node.parentElement &&
+              node.parentElement.tagName !== "SCRIPT" &&
+              node.parentElement.tagName !== "STYLE"
+              ? NodeFilter.FILTER_ACCEPT
+              : NodeFilter.FILTER_REJECT;
+          }
+        }
+      );
+
+      const textNodes = [];
+      let node;
+      while ((node = walker.nextNode())) {
+        textNodes.push(node);
+      }
+      textNodes.forEach(function(textNode) {
+        textNode.nodeValue = normalizeDigits(textNode.nodeValue);
+      });
+
+      document.querySelectorAll("[data-fa], [data-en], .price").forEach(function(element) {
+        Array.from(element.attributes).forEach(function(attribute) {
+          if (attribute.name === "data-fa" || attribute.name === "data-en") {
+            element.setAttribute(attribute.name, normalizeDigits(attribute.value));
+          }
+        });
+        if (element.classList.contains("price")) {
+          element.textContent = normalizeDigits(element.textContent);
+        }
+      });
+    }
+
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll(".card").forEach(function(card) {
+        const title = card.querySelector(".card-title");
+        if (!title) return;
+        card.classList.add("is-collapsed");
+        card.classList.remove("is-open");
+        title.setAttribute("role", "button");
+        title.setAttribute("tabindex", "0");
+        title.setAttribute("aria-expanded", "false");
+        title.addEventListener("click", function() {
+          toggleCard(card);
+        });
+        title.addEventListener("keydown", function(event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleCard(card);
+          }
+        });
+      });
+
+      document.querySelectorAll(".item").forEach(function(item) {
+        const price = item.querySelector(".price");
+        const itemInfo = item.querySelector(".item-info");
+        if (price) {
+          price.textContent = price.textContent.replace(/\s*تومان\s*$/, "").trim();
+          if (price.textContent.toLowerCase() === "wating" ||
+              price.textContent.toLowerCase() === "waiting") {
+            price.textContent = "";
+          }
+          if (itemInfo) {
+            itemInfo.appendChild(price);
+            const description = itemInfo.querySelector(".item-desc");
+            if (description) {
+              itemInfo.insertBefore(price, description);
+            }
+          }
+        }
+
+        if (!item.querySelector(".item-image")) {
+          const imageSlot = document.createElement("div");
+          imageSlot.className = "item-image";
+          imageSlot.setAttribute("data-image-slot", "true");
+          item.appendChild(imageSlot);
+        }
+      });
+
+      normalizeAllVisibleDigits();
+      setLanguage(localStorage.getItem("motifLanguage") || "fa");
+    });
+
+    /* =====================================================
+       ESC KEY
+    ====================================================== */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+          closeMenu();
+          const modal = document.getElementById("infoModal");
+          if (modal && modal.classList.contains("active")) {
+            toggleInfoModal();
+          }
+        }
+
+      }
+    );
+</script>
+<script>
+var MotifPriceLoader = (function () {
+  'use strict';
+
+  /* ============================== CONFIG ============================== */
+
+  var CONFIG = {
+    // آدرس خروجی CSV منتشرشده از Google Sheets را اینجا بگذارید:
+    // قالب پیش‌فرض از "Publish to web" به‌شکل زیر است:
+    // https://docs.google.com/spreadsheets/d/e/SPREADSHEET_ID/pub?gid=SHEET_GID&single=true&output=csv
+    csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTlPbSAGPPmOn2jK23XStOJCC5gVsherENSUBr4EGWwgeOUU39_FJ1CINa_nZk-Ss0QZejNTRBGwUhU/pub?output=csv',
+
+    // نام ستون‌های موجود در شیت (قابل تنظیم):
+    columnNames: {
+      productId: 'product_id',
+      categoryId: 'category_id',
+      subcategoryId: 'subcat_id',
+      nameFa: 'name_fa',
+      nameEn: 'name_en',
+      price: 'price',
+      active: 'active',
+      priceText: 'price_text',
+      description: 'desc_fa',
+      descriptionText: 'description_text',
+      descriptionEn: 'desc_en',
+      image: 'image'
+    },
+
+    // وقتی price عددی وجود دارد، آن را بر price_text ترجیح بده.
+    // این باعث می‌شود تغییر قیمت در ستون price همیشه در سایت اعمال شود.
+    preferPriceText: false,
+
+    // آیا محصولات active=false به‌کلی hide شوند یا فقط dim شوند؟
+    hideInactive: true,
+
+    // کلاس css اضافی برای آیتم‌های غیرفعال (زمانی‌که hideInactive=false).
+    inactiveClass: 'is-inactive',
+
+    // فرمت‌دهی عددی قیمت.
+    numberFormat: 'fa-IR',
+    numberStyle: 'decimal',
+    // واحد پولی را خودکار اضافه نکن؛ مقدار شیت دقیقاً همان‌طور نمایش داده شود.
+    currencySuffix: '',
+
+    // آیا category/subcat که هیچ محصول فعالی ندارند هم مخفی شوند؟
+    hideEmptySections: false,
+
+    // کش کردن CSV در حافظه (برای جلوگیری از fetch تکراری).
+    cache: false,
+
+    // تایم‌اوت درخواست (میلی‌ثانیه).
+    timeout: 8000
+  };
+
+  /* ============================== HELPERS ============================== */
+
+  var cacheStore = null;
+  var STORAGE_KEY = 'motif-google-sheet-csv-v1';
+
+  function log() {
+    if (typeof console !== 'undefined' && console && console.log) {
+      console.log.apply(console, ['[MotifPriceLoader]'].concat(Array.prototype.slice.call(arguments)));
+    }
+  }
+
+  function warn() {
+    if (typeof console !== 'undefined' && console && console.warn) {
+      console.warn.apply(console, ['[MotifPriceLoader]'].concat(Array.prototype.slice.call(arguments)));
+    }
+  }
+
+  /* ---------------------------- CSV Parser ----------------------------
+   * پارسر ساده و مقاوم که از فیلدهای quoted (شامل کاما و کوتیشن) پشتیبانی می‌کند.
+   * -------------------------------------------------------------------- */
+  function parseCsv(text) {
+    var rows = [];
+    var row = [];
+    var field = '';
+    var inQuotes = false;
+    var i = 0;
+    var c;
+
+    for (i = 0; i < text.length; i++) {
+      c = text[i];
+
+      if (inQuotes) {
+        if (c === '"') {
+          if (text[i + 1] === '"') {
+            // escaped quote
+            field += '"';
+            i++;
+          } else {
+            inQuotes = false;
+          }
+        } else {
+          field += c;
+        }
+      } else {
+        if (c === '"') {
+          inQuotes = true;
+        } else if (c === ',') {
+          row.push(field);
+          field = '';
+        } else if (c === '\n') {
+          row.push(field);
+          rows.push(row);
+          row = [];
+          field = '';
+        } else if (c !== '\r') {
+          field += c;
+        }
+      }
+    }
+
+    // آخرین فیلد/ردیف در صورت نبودِ newline پایانی
+    if (field.length > 0 || row.length > 0) {
+      row.push(field);
+      rows.push(row);
+    }
+
+    return rows;
+  }
+
+  /* ------------------------ CSV → Array of Objects -------------------- */
+  function csvToObjects(csvText) {
+    var parsed = parseCsv(csvText);
+    if (!parsed.length) return [];
+
+    var header = parsed[0].map(function (h) {
+      return String(h).trim();
+    });
+
+    return parsed.slice(1).map(function (line) {
+      var obj = {};
+      header.forEach(function (key, idx) {
+        var value = line[idx] !== undefined ? line[idx] : '';
+        // بعضی خروجی‌های Google Sheets هدر price_text را چند بار دارند.
+        // مقدار اولِ غیرخالی معمولاً مقدار قابل ویرایش کاربر است؛
+        // مقدارهای بعدی (مثل قیمت قالب‌بندی‌شده قدیمی) نباید آن را بازنویسی کنند.
+        if (!Object.prototype.hasOwnProperty.call(obj, key) || normalize(obj[key]) === '') {
+          obj[key] = value;
+        }
+      });
+      return obj;
+    });
+  }
+
+  /* --------------------------- Normalization -------------------------- */
+  function normalize(value) {
+    if (value === null || value === undefined) return '';
+    return String(value).trim();
+  }
+
+  function firstValue(record, keys) {
+    for (var i = 0; i < keys.length; i++) {
+      var value = normalize(record[keys[i]]);
+      if (value !== '') return value;
+    }
+    return '';
+  }
+
+  function toBoolean(value) {
+    var v = normalize(value).toLowerCase();
+    return v === 'true' || v === '1' || v === 'yes' || v === 'on';
+    if (v === 'false' || v === '0' || v === 'no' || v === 'off' || v === '') {
+      return false;
+    }
+    return true; // true / 1 / yes / on / هر مقدار غیرخالی دیگر
+  }
+
+  /* ---------------------------- Price format -------------------------- */
+  function formatPrice(value) {
+    var num = Number(value);
+    if (isNaN(num)) return '';
+
+    var formatted;
+    try {
+      formatted = new Intl.NumberFormat(CONFIG.numberFormat, {
+        style: CONFIG.numberStyle,
+        maximumFractionDigits: 0
+      }).format(num);
+    } catch (e) {
+      formatted = num.toLocaleString(CONFIG.numberFormat);
+    }
+
+    if (CONFIG.currencySuffix) {
+      formatted += ' ' + CONFIG.currencySuffix;
+    }
+    return formatted;
+  }
+
+  /* ------------------------------ Apply ------------------------------- */
+
+  function applyPriceToItem(item, record) {
+    var col = CONFIG.columnNames;
+    var productId = normalize(record[col.productId]);
+
+    // نام محصول فقط از Google Sheet خوانده می‌شود.
+    var nameFa = firstValue(record, [col.nameFa, 'name_fa']);
+    var nameEn = firstValue(record, [col.nameEn, 'name_en']);
+    if (nameFa !== '' || nameEn !== '') {
+      var nameEls = item.querySelectorAll('.item-name');
+      Array.prototype.forEach.call(nameEls, function (el) {
+        var fa = nameFa || nameEn;
+        var en = nameEn || nameFa;
+        el.textContent = document.documentElement.lang === 'en' ? en : fa;
+        el.setAttribute('data-fa', fa);
+        el.setAttribute('data-en', en);
+        el.setAttribute('data-loader-name', 'true');
+      });
+    }
+
+    // قیمت متنی (آماده) — در صورت فعال بودن preferPriceText اولویت دارد.
+    var priceText = normalize(record[col.priceText]);
+    var numericPrice = normalize(record[col.price]);
+
+    var finalPrice;
+    if (CONFIG.preferPriceText && priceText !== '') {
+      finalPrice = priceText;
+    } else if (numericPrice !== '' && !isNaN(Number(numericPrice))) {
+      finalPrice = formatPrice(numericPrice);
+    } else if (priceText !== '') {
+      finalPrice = priceText;
+    } else {
+      finalPrice = null; // چیزی برای نمایش نیست؛ قیمت فعلی HTML حفظ می‌شود.
+    }
+
+    if (finalPrice !== null) {
+      var priceEls = item.querySelectorAll('.price');
+      Array.prototype.forEach.call(priceEls, function (el) {
+        el.textContent = finalPrice;
+      });
+    } else {
+      var emptyPriceEls = item.querySelectorAll('.price');
+      Array.prototype.forEach.call(emptyPriceEls, function (el) {
+        el.textContent = '';
+      });
+    }
+
+    // توضیحات محصول از شیت خوانده می‌شود.
+    // اولویت با description_text و سپس description است.
+    var description = firstValue(record, [
+      col.description,
+      col.descriptionText,
+      'desc_fa',
+      'description',
+      'description_text'
+    ]);
+    if (description !== '') {
+      var descriptionEn = firstValue(record, [
+        col.descriptionEn,
+        'desc_en',
+        'description_en'
+      ]);
+      var descriptionEls = item.querySelectorAll('.item-desc');
+      Array.prototype.forEach.call(descriptionEls, function (el) {
+        el.textContent = document.documentElement.lang === 'en' && descriptionEn !== ''
+          ? descriptionEn
+          : description;
+        el.setAttribute('data-fa', description);
+        el.setAttribute('data-loader-description', 'true');
+        if (descriptionEn !== '') {
+          el.setAttribute('data-en', descriptionEn);
+        } else {
+          el.setAttribute('data-en', description);
+        }
+      });
+    }
+
+    // وضعیت فعال/غیرفعال
+    var active = toBoolean(record[col.active]);
+    if (!active) {
+      if (CONFIG.hideInactive) {
+        item.style.display = 'none';
+        item.setAttribute('data-inactive', 'true');
+      } else {
+        item.classList.add(CONFIG.inactiveClass);
+        item.setAttribute('data-inactive', 'true');
+      }
+    } else {
+      // اطمینان از نمایش در صورت فعال‌بودن
+      if (CONFIG.hideInactive) {
+        item.style.display = '';
+      }
+      item.classList.remove(CONFIG.inactiveClass);
+      item.removeAttribute('data-inactive');
+      item.setAttribute('data-active', 'true');
+    }
+
+    applyImageToItem(item, record, productId);
+  }
+
+  function hideEmptySections() {
+    if (!CONFIG.hideEmptySections) return;
+
+    // زیردسته‌ها: اگر هیچ آیتم فعالی ندارند، مخفی شوند.
+    var subcatCards = document.querySelectorAll('.card[data-subcat-id]');
+    Array.prototype.forEach.call(subcatCards, function (card) {
+      var visibleItems = Array.prototype.filter.call(
+        card.querySelectorAll('.item[data-product-id]'),
+        function (item) {
+          return item.style.display !== 'none';
+        }
+      );
+      if (visibleItems.length === 0) {
+        card.style.display = 'none';
+      }
+    });
+
+    // دسته‌ها: اگر هیچ زیردسته‌ای با محتوای فعالبقا نمانده، مخفی شوند.
+    var sections = document.querySelectorAll('section.page[data-category-id]');
+    Array.prototype.forEach.call(sections, function (section) {
+      var visibleCards = Array.prototype.filter.call(
+        section.querySelectorAll('.card[data-subcat-id]'),
+        function (card) {
+          return card.style.display !== 'none';
+        }
+      );
+      if (visibleCards.length === 0) {
+        section.style.display = 'none';
+      }
+    });
+  }
+
+  function categoryFromMenuLink(link) {
+    var onclick = link.getAttribute('onclick') || '';
+    var match = onclick.match(/goToCategory\(\s*['"]([^'"]+)['"]/);
+    return match ? normalize(match[1]) : '';
+  }
+
+  function subcategoryFromMenuLink(link) {
+    var onclick = link.getAttribute('onclick') || '';
+    var match = onclick.match(/goToCategory\(\s*['"][^'"]+['"]\s*,\s*['"]([^'"]*)['"]/);
+    return match ? normalize(match[1]) : '';
+  }
+
+  function sameLabel(left, right) {
+    return normalize(left).replace(/\s+/g, ' ') === normalize(right).replace(/\s+/g, ' ');
+  }
+
+  function updateSubcategoryVisibility(records) {
+    var col = CONFIG.columnNames;
+    var activeBySubcategory = {};
+
+    records.forEach(function (record) {
+      var subcategoryId = normalize(record[col.subcategoryId]);
+      if (!subcategoryId) return;
+      if (!Object.prototype.hasOwnProperty.call(activeBySubcategory, subcategoryId)) {
+        activeBySubcategory[subcategoryId] = false;
+      }
+      if (toBoolean(record[col.active])) {
+        activeBySubcategory[subcategoryId] = true;
+      }
+    });
+
+    var cards = document.querySelectorAll('.card[data-subcat-id]');
+    Array.prototype.forEach.call(cards, function (card) {
+      var subcategoryId = normalize(card.getAttribute('data-subcat-id'));
+      var isVisible = activeBySubcategory[subcategoryId] === true;
+      card.style.display = isVisible ? '' : 'none';
+      card.hidden = !isVisible;
+
+      var title = card.querySelector('.card-title');
+      var titleText = title ? title.textContent : '';
+      var titleFa = title ? title.getAttribute('data-fa') : '';
+      var titleEn = title ? title.getAttribute('data-en') : '';
+      var menuLinks = document.querySelectorAll('.menu-link');
+      Array.prototype.forEach.call(menuLinks, function (link) {
+        var linkCategory = categoryFromMenuLink(link);
+        var linkSubcategory = subcategoryFromMenuLink(link);
+        var linkedSubcategoryId = normalize(link.getAttribute('data-subcat-id'));
+        var matchesDirectId = linkedSubcategoryId !== '' && linkedSubcategoryId === subcategoryId;
+        var matchesTitle = linkCategory && linkSubcategory &&
+          (sameLabel(linkSubcategory, titleText) ||
+           sameLabel(linkSubcategory, titleFa) ||
+           sameLabel(linkSubcategory, titleEn));
+        if (matchesDirectId || matchesTitle) {
+          link.style.display = isVisible ? '' : 'none';
+          link.hidden = !isVisible;
+          link.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+        }
+      });
+    });
+  }
+
+  function updateCategoryVisibility(records) {
+    var col = CONFIG.columnNames;
+    var activeByCategory = {};
+
+    records.forEach(function (record) {
+      var categoryId = normalize(record[col.categoryId]);
+      if (!categoryId) return;
+      if (!Object.prototype.hasOwnProperty.call(activeByCategory, categoryId)) {
+        activeByCategory[categoryId] = false;
+      }
+      if (toBoolean(record[col.active])) {
+        activeByCategory[categoryId] = true;
+      }
+    });
+
+    var visibleCategories = [];
+    var sections = document.querySelectorAll('section.page[data-category-id]');
+    Array.prototype.forEach.call(sections, function (section) {
+      var categoryId = normalize(section.getAttribute('data-category-id'));
+      var isVisible = activeByCategory[categoryId] === true;
+      section.style.display = isVisible ? '' : 'none';
+
+      var categoryButton = document.getElementById(categoryId + 'Btn');
+      if (categoryButton) {
+        categoryButton.style.display = isVisible ? '' : 'none';
+      }
+
+      var menuLinks = document.querySelectorAll('.menu-link');
+      Array.prototype.forEach.call(menuLinks, function (link) {
+        if (categoryFromMenuLink(link) === categoryId &&
+            !link.hasAttribute('data-subcat-id')) {
+          link.style.display = isVisible ? '' : 'none';
+          link.hidden = !isVisible;
+        }
+      });
+
+      if (isVisible) {
+        visibleCategories.push(categoryId);
+      }
+    });
+
+    var activeSection = document.querySelector('section.page.active[data-category-id]');
+    if ((!activeSection || activeSection.style.display === 'none') && visibleCategories.length) {
+      if (typeof showPage === 'function') {
+        showPage(visibleCategories[0]);
+      }
+    }
+
+  }
+
+  function applyImageToItem(item, record, productId) {
+    var col = CONFIG.columnNames;
+    var imageSlot = item.querySelector('.item-image');
+    if (!imageSlot || !productId) return;
+
+    var imageValue = normalize(record[col.image]);
+    var imageSources = [];
+    if (imageValue !== '') {
+      imageSources.push(imageValue);
+    }
+
+    var encodedId = encodeURIComponent(productId);
+    imageSources.push(
+      'images/' + encodedId + '.jpg',
+      'images/' + encodedId + '.jpeg',
+      'images/' + encodedId + '.png',
+      'images/' + encodedId + '.webp'
+    );
+
+    var image = imageSlot.querySelector('img');
+    if (!image) {
+      image = document.createElement('img');
+      image.alt = '';
+      image.loading = 'lazy';
+      imageSlot.appendChild(image);
+    }
+
+    var sourceIndex = 0;
+    image.onerror = function () {
+      sourceIndex++;
+      if (sourceIndex < imageSources.length) {
+        image.src = imageSources[sourceIndex];
+      } else {
+        image.removeAttribute('src');
+        imageSlot.classList.remove('has-image');
+      }
+    };
+    image.onload = function () {
+      imageSlot.classList.add('has-image');
+    };
+    image.src = imageSources[sourceIndex];
+  }
+
+  function moveItemsToSheetCategories(records) {
+    var col = CONFIG.columnNames;
+    var recordsById = {};
+    records.forEach(function (record) {
+      var productId = normalize(record[col.productId]);
+      if (productId) recordsById[productId] = record;
+    });
+
+    var cardsBySubcategory = {};
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.card[data-subcat-id]'),
+      function (card) {
+        var subcategoryId = normalize(card.getAttribute('data-subcat-id'));
+        if (subcategoryId) cardsBySubcategory[subcategoryId] = card;
+      }
+    );
+
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.item[data-product-id]'),
+      function (item) {
+        var productId = normalize(item.getAttribute('data-product-id'));
+        var record = recordsById[productId];
+        if (!record) return;
+
+        var categoryId = normalize(record[col.categoryId]);
+        var subcategoryId = normalize(record[col.subcategoryId]);
+        var targetCard = cardsBySubcategory[subcategoryId];
+        if (!targetCard) return;
+
+        item.setAttribute('data-category-id', categoryId);
+        item.setAttribute('data-subcat-id', subcategoryId);
+        if (item.parentElement !== targetCard) {
+          targetCard.appendChild(item);
+        }
+      }
+    );
+  }
+
+  function createMissingItems(records) {
+    var col = CONFIG.columnNames;
+    var existing = {};
+
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.item[data-product-id]'),
+      function (item) {
+        var productId = normalize(item.getAttribute('data-product-id'));
+        if (productId) existing[productId] = true;
+      }
+    );
+
+    records.forEach(function (record) {
+      var productId = normalize(record[col.productId]);
+      var categoryId = normalize(record[col.categoryId]);
+      var subcategoryId = normalize(record[col.subcategoryId]);
+      if (!productId || existing[productId] || !subcategoryId) return;
+
+      var card = null;
+      var cards = document.querySelectorAll('.card[data-subcat-id]');
+      Array.prototype.some.call(cards, function (candidate) {
+        if (normalize(candidate.getAttribute('data-subcat-id')) === subcategoryId) {
+          card = candidate;
+          return true;
+        }
+        return false;
+      });
+      if (!card) {
+        warn('برای subcat_id این محصول کارت HTML پیدا نشد:', subcategoryId);
+        return;
+      }
+
+      var item = document.createElement('div');
+      item.className = 'item';
+      item.setAttribute('data-category-id', categoryId);
+      item.setAttribute('data-product-id', productId);
+      item.setAttribute('data-subcat-id', subcategoryId);
+
+      var info = document.createElement('div');
+      info.className = 'item-info';
+
+      var name = document.createElement('div');
+      name.className = 'item-name';
+
+      var description = document.createElement('div');
+      description.className = 'item-desc';
+
+      var price = document.createElement('div');
+      price.className = 'price';
+      price.textContent = '';
+
+      info.appendChild(name);
+      info.appendChild(price);
+      info.appendChild(description);
+      item.appendChild(info);
+
+      var imageSlot = document.createElement('div');
+      imageSlot.className = 'item-image';
+      imageSlot.setAttribute('data-image-slot', 'true');
+      item.appendChild(imageSlot);
+
+      card.appendChild(item);
+      existing[productId] = true;
+    });
+  }
+
+  function applyToDom(records) {
+    var col = CONFIG.columnNames;
+    createMissingItems(records);
+    var index = {};
+    records.forEach(function (r) {
+      var key = normalize(r[col.productId]);
+      if (key) index[key] = r;
+    });
+
+    var applied = 0;
+    var items = document.querySelectorAll('.item[data-product-id]');
+    Array.prototype.forEach.call(items, function (item) {
+      var pid = normalize(item.getAttribute('data-product-id'));
+      if (pid && !index[pid]) {
+        item.remove();
+        return;
+      }
+      if (pid && index[pid]) {
+        if (!toBoolean(index[pid][col.active])) {
+          item.remove();
+          return;
+        }
+        applyPriceToItem(item, index[pid]);
+        applied++;
+      }
+    });
+
+    // اعمال نام‌ها در یک مرحله مستقل؛ نام Google Sheet نباید با اجرای زبان
+    // یا سایر به‌روزرسانی‌های صفحه از بین برود.
+    Array.prototype.forEach.call(items, function (item) {
+      var pid = normalize(item.getAttribute('data-product-id'));
+      var record = pid ? index[pid] : null;
+      if (!record) return;
+      var fa = firstValue(record, [col.nameFa, 'name_fa']);
+      var en = firstValue(record, [col.nameEn, 'name_en']);
+      if (fa === '' && en === '') return;
+      var name = item.querySelector('.item-name');
+      if (!name) return;
+      name.setAttribute('data-fa', fa || en);
+      name.setAttribute('data-en', en || fa);
+      name.setAttribute('data-loader-name', 'true');
+      name.textContent = document.documentElement.lang === 'en' ? (en || fa) : (fa || en);
+    });
+
+    moveItemsToSheetCategories(records);
+    hideEmptySections();
+    updateCategoryVisibility(records);
+    // زیر‌دسته‌ها باید آخر اعمال شوند تا وضعیت category اصلی
+    // نتواند لینک زیر‌دسته را دوباره نمایش/مخفی کند.
+    updateSubcategoryVisibility(records);
+    var descriptionsApplied = document.querySelectorAll('.item-desc[data-loader-description="true"]').length;
+    log('تعداد محصولات به‌روزرسانی‌شده:', applied, 'از', items.length, '— توضیحات:', descriptionsApplied);
+    return applied;
+  }
+
+  /* ------------------------------ Fetch ------------------------------- */
+
+  function fetchCsv(url) {
+    return new Promise(function (resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      var timedOut = false;
+      var timer = setTimeout(function () {
+        timedOut = true;
+        xhr.abort();
+        reject(new Error('timeout'));
+      }, CONFIG.timeout);
+
+      xhr.open('GET', url, true);
+      xhr.setRequestHeader('Cache-Control', 'no-cache, no-store, max-age=0');
+      xhr.setRequestHeader('Pragma', 'no-cache');
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4 || timedOut) return;
+        clearTimeout(timer);
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(xhr.responseText);
+        } else {
+          reject(new Error('HTTP ' + xhr.status));
+        }
+      };
+      xhr.onerror = function () {
+        clearTimeout(timer);
+        reject(new Error('network error'));
+      };
+      xhr.send();
+    });
+  }
+
+  function saveLastCsv(text) {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(STORAGE_KEY, text);
+      }
+    } catch (e) {}
+  }
+
+  function loadLastCsv() {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        return localStorage.getItem(STORAGE_KEY) || '';
+      }
+    } catch (e) {}
+    return '';
+  }
+
+  function applyLastSavedData() {
+    var savedCsv = loadLastCsv();
+    if (!savedCsv) return false;
+    var savedRecords = csvToObjects(savedCsv);
+    if (!savedRecords.length) return false;
+    try {
+      applyToDom(savedRecords);
+      warn('آخرین نسخه ذخیره‌شده برای حالت آفلاین اعمال شد.');
+      return true;
+    } catch (e) {
+      warn('خطا در اعمال نسخه آفلاین:', e);
+      return false;
+    }
+  }
+
+  /* ---------------------------- Main entry -----------------------------
+   * 1) اگر کش موجود است، مستقیم همان را اعمال کن.
+   * 2) در غیر این صورت CSV را fetch کن، parse کن و اعمال کن.
+   * 3) در صورت هر خطا، صفحه به‌صورت static (با قیمت‌های HTML فعلی)
+   *    باقی می‌ماند تا سایت هرگز از کار نیفتد.
+   * -------------------------------------------------------------------- */
+  function apply(options) {
+    var cfg = CONFIG;
+    if (options) {
+      if (options.forceRefresh) cacheStore = null;
+      if (options.csvUrl) cfg.csvUrl = options.csvUrl;
+      if (options.columnNames) {
+        for (var k in options.columnNames) {
+          cfg.columnNames[k] = options.columnNames[k];
+        }
+      }
+      if (typeof options.preferPriceText === 'boolean') cfg.preferPriceText = options.preferPriceText;
+      if (typeof options.hideInactive === 'boolean') cfg.hideInactive = options.hideInactive;
+      if (typeof options.hideEmptySections === 'boolean') cfg.hideEmptySections = options.hideEmptySections;
+    }
+
+    // ابتدا آخرین داده سالم را فوراً نمایش بده؛ سپس نسخه تازه را از شیت بگیر.
+    // این باعث می‌شود منو در حالت آفلاین منتظر timeout شبکه نماند.
+    if (!options || options.useSavedData !== false) {
+      applyLastSavedData();
+    }
+
+    if (!cfg.csvUrl || cfg.csvUrl.indexOf('PASTE_YOUR') === 0) {
+      warn('csvUrl هنوز تنظیم نشده است. لطفاً URL انتشار CSV شیت را در CONFIG.csvUrl قرار دهید.');
+      return Promise.resolve(0);
+    }
+
+    if (CONFIG.cache && cacheStore) {
+      return Promise.resolve(applyToDom(cacheStore));
+    }
+
+    var requestUrl = cfg.csvUrl + (cfg.csvUrl.indexOf('?') >= 0 ? '&' : '?') + '_motif_ts=' + Date.now();
+
+    return fetchCsv(requestUrl)
+      .then(function (text) {
+        var records = csvToObjects(text);
+        if (!records.length) {
+          warn('CSV خالی است یا هدر مناسبی ندارد.');
+          return 0;
+        }
+        saveLastCsv(text);
+        if (CONFIG.cache) cacheStore = records;
+        return applyToDom(records);
+      })
+      .catch(function (err) {
+        warn('خطا در دریافت/پردازش CSV:', err && err.message ? err.message : err);
+        var lastCsv = loadLastCsv();
+        var lastRecords = lastCsv ? csvToObjects(lastCsv) : [];
+        if (lastRecords.length) {
+          warn('از آخرین داده سالم ذخیره‌شده استفاده شد.');
+          return applyToDom(lastRecords);
+        }
+        warn('صفحه بدون تغییر (static) باقی ماند.');
+        return 0;
+      });
+  }
+
+  /* ------------------------------ Expose ------------------------------ */
+  return {
+    apply: apply,
+    config: CONFIG,
+    parseCsv: parseCsv,
+    csvToObjects: csvToObjects
+  };
+})();
+
+// اگر صفحه به‌طور خودکار این اسکریپت را لود کرد، بلافاصله اعمال کن.
+if (typeof document !== 'undefined' && document.readyState !== 'loading') {
+  MotifPriceLoader.apply();
+} else if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', function () {
+    MotifPriceLoader.apply();
+  });
+}
+
+// Google Sheets خروجی منتشرشده را معمولاً تا حدود ۵ دقیقه cache می‌کند؛
+// با درخواست تازه، تغییرات جدید بدون refresh دستی صفحه بررسی می‌شوند.
+if (typeof window !== 'undefined') {
+  window.setInterval(function () {
+    MotifPriceLoader.apply({ forceRefresh: true });
+  }, 300000);
+}
+</script>
+</body>
+</html>
