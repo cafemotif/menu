@@ -793,83 +793,111 @@ main { max-width: 1360px; }
   .footer a { font-size: 11px; }
 }
 </style>
+
 <style>
-/* ===== MOTIF mobile image blend fix ===== */
+/* ========================================
+   MOTIF - MOBILE IMAGE FIX V2
+   Bigger Photos + White Background Blending
+   ======================================== */
+
 @media (max-width: 680px) {
 
-  .product{
-    background: linear-gradient(180deg,#e7eee5 0%, #d9e3d7 38%, #274232 100%) !important;
-    overflow: hidden;
+  /* زمینه کارت با رنگ عکس ترکیب شود */
+  .product {
+    position: relative !important;
+    overflow: hidden !important;
+    isolation: isolate !important;
+
+    background: linear-gradient(
+      180deg,
+      #e1e9dd 0%,
+      #d5e1d3 35%,
+      #9eaf9f 68%,
+      #293f32 100%
+    ) !important;
   }
 
-  /* soft white glow behind image to blend white photo background */
-  .product::before{
-    content: "";
-    position: absolute;
-    top: 18px;
-    left: 18px;
-    right: 18px;
-    bottom: 96px;
-    border-radius: 30px;
-    z-index: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(circle at 50% 42%,
-        rgba(255,255,255,.98) 0%,
-        rgba(248,250,247,.92) 30%,
-        rgba(235,241,234,.68) 56%,
-        rgba(225,234,224,.28) 76%,
-        rgba(225,234,224,0) 100%);
-    filter: blur(12px);
+  /* حذف افکت روشن اضافی نسخه قبل */
+  .product::before {
+    content: none !important;
+    display: none !important;
   }
 
-  .product .photo{
+  /* عکس بزرگ و بدون مستطیل سفید */
+  .product .photo {
     position: absolute !important;
-    top: 14px !important;
-    left: 14px !important;
-    right: 14px !important;
-    bottom: 102px !important;
 
-    width: calc(100% - 28px) !important;
-    height: calc(100% - 116px) !important;
+    inset: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
 
     object-fit: contain !important;
-    object-position: center center !important;
+    object-position: center !important;
+
     background: transparent !important;
 
-    /* removes harsh white box feeling */
-    /*mix-blend-mode: multiply;*/
+    /* ترکیب سفیدی عکس با زمینه سبز */
+    mix-blend-mode: multiply !important;
 
-    /* fade the edges of the image */
-    -webkit-mask-image: radial-gradient(circle at center,
-      rgba(0,0,0,1) 55%,
-      rgba(0,0,0,.96) 68%,
-      rgba(0,0,0,.70) 82%,
-      rgba(0,0,0,0) 100%);
-    mask-image: radial-gradient(circle at center,
-      rgba(0,0,0,1) 55%,
-      rgba(0,0,0,.96) 68%,
-      rgba(0,0,0,.70) 82%,
-      rgba(0,0,0,0) 100%);
+    /* حذف ماسک قبلی که عکس را کوچک می‌کرد */
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
 
-    filter: drop-shadow(0 14px 28px rgba(18,33,24,.18))
-            saturate(1.03)
-            contrast(1.02);
+    opacity: 1 !important;
+    filter: none !important;
+
+    /* بزرگ‌تر شدن سوژه */
+    transform: scale(1.25) !important;
+    transform-origin: center 43% !important;
 
     z-index: 1 !important;
+    transition: none !important;
   }
 
-  .product::after{
+  .product:hover .photo {
+    transform: scale(1.25) !important;
+  }
+
+  /* گرادیان خوانایی نوشته‌ها */
+  .product::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+
+    background: linear-gradient(
+      to top,
+      rgba(18, 37, 27, .96) 0%,
+      rgba(18, 37, 27, .78) 19%,
+      rgba(18, 37, 27, .34) 43%,
+      rgba(18, 37, 27, 0) 76%
+    ) !important;
+
     z-index: 2 !important;
+    pointer-events: none !important;
   }
 
-  .product .details{
+  /* نام، توضیحات و قیمت */
+  .product .details {
+    position: absolute !important;
     z-index: 3 !important;
   }
 
-  .product .add{
+  /* دکمه افزودن محصول */
+  .product .add {
     z-index: 4 !important;
   }
+
 }
 </style>
 </head>
