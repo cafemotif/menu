@@ -1460,5 +1460,151 @@ load();
 setInterval(load,300000);
 
 </script>
+
+<!-- MOTIF: Google Sheets Visibility Fix -->
+
+<style>
+/* نمایش کامل عکس بدون بریدگی و زوم */
+.product .photo {
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+  background: #e2e9df;
+}
+
+.product:hover .photo {
+  transform: none !important;
+}
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  // Only explicit TRUE means active
+  const activeValue = v =>
+    ['true', '1', 'yes', 'on'].includes(
+      String(v ?? '').trim().toLowerCase()
+    );
+
+  const originalRender = render;
+  const originalCart = renderCart;
+
+  // Read products exclusively from Google Sheets
+  items = function () {
+    const latest = new Map();
+
+    for (const r of state.records) {
+      const id = String(r.product_id || '').trim();
+
+      if (id) {
+        latest.set(id, r);
+      }
+    }
+
+    return [...latest.values()].filter(r =>
+      activeValue(r.active) &&
+      String(r.name_fa || r.name_en || '').trim() &&
+      Object.hasOwn(categories, r.category_id) &&
+      (sections[r.category_id] || []).some(
+        s => s[0] === r.subcat_id
+      )
+    );
+  };
+
+  // Remove inactive products from selection list
+  renderCart = function () {
+    const ids = new Set(
+      items().map(r => r.product_id)
+    );
+
+    for (const id of state.cart.keys()) {
+      if (!ids.has(id)) {
+        state.cart.delete(id);
+      }
+    }
+
+    originalCart();
+  };
+
+  // Update category and subcategory visibility
+  render = function () {
+    const available = items();
+
+    const categoryKeys = Object.keys(categories);
+
+    const availableCats = new Set(
+      available.map(r => r.category_id)
+    );
+
+    // Automatically select an available category
+    if (
+      availableCats.size &&
+      !availableCats.has(state.page)
+    ) {
+      state.page = categoryKeys.find(
+        id => availableCats.has(id)
+      );
+    }
+
+    // Reset subcategory if it has no active products
+    if (
+      state.sub !== 'all' &&
+      !available.some(r =>
+        r.category_id === state.page &&
+        r.subcat_id === state.sub
+      )
+    ) {
+      state.sub = 'all';
+    }
+
+    originalRender();
+
+    // Hide fully inactive main categories
+    document
+      .querySelectorAll('#tabs .tab')
+      .forEach((btn, i) => {
+        if (!availableCats.has(categoryKeys[i])) {
+          btn.remove();
+        }
+      });
+
+    // Hide fully inactive subcategories
+    const subs = sections[state.page] || [];
+
+    document
+      .querySelectorAll('#rail .chip')
+      .forEach((btn, i) => {
+        if (i === 0) return;
+
+        const sub = subs[i - 1]?.[0];
+
+        const hasActive = available.some(r =>
+          r.category_id === state.page &&
+          r.subcat_id === sub
+        );
+
+        if (!hasActive) {
+          btn.remove();
+        }
+      });
+
+    // If the entire menu is inactive
+    if (!availableCats.size) {
+      document.getElementById('heading')
+        .textContent =
+        'در حال حاضر محصول فعالی وجود ندارد';
+
+      document.getElementById('rail')
+        .replaceChildren();
+    }
+
+    renderCart();
+  };
+
+  render();
+
+})();
+</script>
 </body>
 </html>
