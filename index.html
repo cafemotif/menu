@@ -1153,6 +1153,103 @@ main { max-width: 1360px; }
   }
 }
 </style>
+<style>
+/* =========================================
+   MOTIF - AUTO IMAGE BLEND FOR ALL PRODUCTS
+   هر عکس جدید به‌صورت خودکار با کارت blend می‌شود
+   ========================================= */
+
+/* هر کارت محصول یک لایه بک‌گراند محو از خود عکس می‌گیرد */
+.product {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+}
+
+/* لایه blurred background از خود عکس */
+.product::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image:
+    var(--card-image),
+    linear-gradient(180deg,#dfe7db 0%, #b9c8b8 45%, #294032 100%);
+  background-size: cover, cover;
+  background-position: center center, center center;
+  background-repeat: no-repeat, no-repeat;
+
+  transform: scale(1.18);
+  filter: blur(22px) saturate(1.05) brightness(.96);
+  opacity: .95;
+}
+
+/* خود عکس اصلی */
+.product .photo {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: contain !important;
+  object-position: center center !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  z-index: 1 !important;
+
+  /* این دو خط مهم‌اند: */
+  mix-blend-mode: normal !important;
+  filter: drop-shadow(0 10px 24px rgba(14,26,19,.14)) !important;
+}
+
+/* overlay برای خوانایی متن */
+.product::after {
+  z-index: 2 !important;
+}
+
+.product .details {
+  z-index: 3 !important;
+}
+
+.product .add {
+  z-index: 4 !important;
+}
+
+/* موبایل */
+@media (max-width: 680px) {
+  .product::before {
+    transform: scale(1.22);
+    filter: blur(20px) saturate(1.06) brightness(.95);
+    opacity: .98;
+  }
+
+  .product .photo {
+    transform: scale(1.08);
+    transform-origin: center center;
+  }
+
+  .product:hover .photo {
+    transform: scale(1.08);
+  }
+}
+
+/* دسکتاپ و تبلت */
+@media (min-width: 681px) {
+  .product .photo {
+    transform: scale(1.03);
+    transform-origin: center center;
+  }
+
+  .product:hover .photo {
+    transform: scale(1.05);
+  }
+}
+</style>
 </head>
 
 <body>
@@ -1962,6 +2059,51 @@ setInterval(load,300000);
 
   render();
 
+})();
+</script>
+<script>
+/* =========================================
+   MOTIF - auto assign product image to card background
+   ========================================= */
+(function () {
+  function applyProductBlendBackground(root = document) {
+    const cards = root.querySelectorAll('.product');
+
+    cards.forEach(card => {
+      const img = card.querySelector('.photo');
+      if (!img) return;
+
+      const setBg = () => {
+        const src = img.currentSrc || img.src;
+        if (!src) return;
+
+        /* همان عکس را بک‌گراند محو کارت می‌کنیم */
+        card.style.setProperty('--card-image', `url("${src}")`);
+      };
+
+      if (img.complete) {
+        setBg();
+      } else {
+        img.addEventListener('load', setBg, { once: true });
+      }
+    });
+  }
+
+  /* بار اول */
+  window.applyProductBlendBackground = applyProductBlendBackground;
+  document.addEventListener('DOMContentLoaded', () => {
+    applyProductBlendBackground();
+  });
+
+  /* اگر محصولات بعداً دوباره render شدند */
+  const observer = new MutationObserver(() => {
+    applyProductBlendBackground();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 })();
 </script>
 </body>
